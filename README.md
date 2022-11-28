@@ -4,13 +4,13 @@
 
 ### Why
 
-Paastis helps development teams or workers that build and manage many PaaS applications with few usage (ex: demo, ephemeral or in-progress apps) to optimize their resource consumption.
+Paastis helps development teams or workers that build and manage many PaaS applications with little usage (ex: demo, ephemeral or in-progress apps) to optimize their resource consumption.
 
 ### How
 
 Paastis automatically scales down (to-zero) and up (to-x) PaaS applications according to their idle time.
 
-Rather than running apps with no trafic unnecessarily, Paastis automatically stops it after an optimized delay (configurable, for all apps or by app or group of apps).
+Rather than running apps with no traffic unnecessarily, Paastis automatically stops it after an optimized delay (configurable, for all apps or by app or group of apps).
 
 If an app is requested, whether it is active or not, then Paastis acts as a proxy and forwards the request with all its attributes (headers, query and/or body params) to the upstream PaaS application (after eventually waking it up).
 
@@ -24,13 +24,13 @@ Paastis is distributed on [the npm Registry](https://www.npmjs.com/package/paast
 
 ### Who
 
-Paastis is aimed for development teams and workers that use PaaS and Cloud hosting services.
+Paastis is aimed at development teams and workers that use PaaS and Cloud hosting services.
 
-Thus, really great attention is paid to Developer Experience.
+Thus, great attention is paid to Developer Experience.
 
 ### When
 
-Paastis fits organizations with one or multiple applications with few usage:
+Paastis fits organizations with one or multiple applications with little usage:
 - development applications, and especially _review apps_ ;
 - projects at their very beginning ;
 - platforms with very cyclic, part-time or known time slots (ex: a scholar-based app, a midday exclusive service, a nightly treatment, etc.).
@@ -86,7 +86,7 @@ $ curl -v localhost:3000/api/v1/products -H "Host: my-paas-app.proxy.paastis.loc
 ```
 
 If the upstream exists:
-- if it is sleeping, then it will be awake
+- if it is sleeping, then it will be awaken
 - else it will be called with given URI, headers and parameters (query and body)
 - finally, your resource will be served
 
@@ -98,7 +98,7 @@ If the upstream exists:
 
 Scenario :
 1. Auto-discovery: Paastis detects that there is a new review app on Scalingo ; it begins to monitor it
-2. Scale-to-zero: If the app is not accessed during the next 15mn (editable duration), then it is shut down (but not delete)
+2. Scale-to-zero: If the app is not accessed during the next 15mn (editable duration), then it is shut down (but not deleted)
 3. Run on-demand: If someone wants to finally access the app, then it is awakened
 4. Smart proxy: Thus, the engine proxies the HTTP request to the upstream desired location
 
@@ -107,11 +107,11 @@ Paastis supports **multiple PaaS providers** (but not yet all their regions) :
 - Heroku
 - Scalingo
 
-It is also possible to define Shell commands (a.k.a. **hooks**) to be executed for each application on the following phases :
-- before an app to be stopped
-- after it stopped
-- before an app to be started
-- after it started
+It is also possible to define Shell commands (a.k.a. **hooks**) to be executed for each application in the following situations :
+- before an app is stopped
+- after it has stopped
+- before an app is started
+- after it has started
 
 Sometimes, we do not want to monitor and manage some apps (for example, an instance of Paastis engine 😙).
 We can exclude / **ignore apps to me managed** (with environment variable `REGISTRY_IGNORED_APPS`.
@@ -119,7 +119,7 @@ We can exclude / **ignore apps to me managed** (with environment variable `REGIS
 ## Architecture
 
 Paastis is composed of 3 main building blocks :
-- a **proxy** that forwards ingoing HTTP requests to an upstream server (based on the predefined PaaS provider)
+- a **proxy** that forwards incoming HTTP requests to an upstream server (based on the predefined PaaS provider)
 - a **registry** of the running PaaS applications to monitor (in-memory or Redis-based)
 - a **scheduler** (cron-based) that regularly (every minute by default) :
   - checks for new apps to monitor (due to manual or automated creation)
